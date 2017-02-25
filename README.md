@@ -23,7 +23,7 @@ The goals / steps of this project are the following:
 
 Jupyter wasn't working, Ubuntu was a stuborn child on me when trying to install python and cv2, cv2 saving videos of 6 kb, divisions by zero, loosing float points, and, even worst, an angry wife...
 
-I switched to PyCharm to work on this project, so I had to modify the delivery of it. To review my code, please open the py file called "Project1_DanielGG_mySolution.py". The whole repository might have residues of the original Udacity template, so please disregard them.
+I switched to PyCharm to work on this project, so I had to modify the delivery of it. To review my code, please open the py file called **"Project1_DanielGG_mySolution.py"**. The whole repository might have residues of the original Udacity template, so please disregard them.
 
 Once you go over my code, you'll notice I lay out the code in a way - I think - that is easier to come back in the future and read through the whole solution as if it was notebook. I put labels and indications for me to remember why I had to make changes, where're my functions, where are the functions given by the Udacity instructors, and such. I also include sections where I incorporate my troubleshooting code. I am used to programming since I am a kid, but I am much more visual, specially when I want to fix something.
 
@@ -43,37 +43,34 @@ The steps I followed were (after opening and initializing the video for editing)
 
 1. The Trifecta
 
-* I Converted each frame to a grayscale picture, then
+  1. I Converted each frame to a grayscale picture, then
 
-* Smooth the frame with Gaussian Blur to find the bit change rate from the frame, and then
+  2. Smooth the frame with Gaussian Blur to find the bit change rate from the frame, and then
 
-* Applied Canny Edge to take that change and covert it into individual pixels for processing.
-
+  3. Applied Canny Edge to take that change and covert it into individual pixels for processing.
 
 
 2. Reducing the Region of Interest to what we want to work with (The ROI)
 
-* Created a blank frame (the size of the input frame) and defined a small area to be the only area visible by using a Polygon. In most videos, a trapezoid did the work; but more sophisticated shapes can be used to exactly define what will be "visible" as the Region of Interest.
+  1. Created a blank frame (the size of the input frame) and defined a small area to be the only area visible by using a Polygon. In most videos, a trapezoid did the work; but more sophisticated shapes can be used to exactly define what will be "visible" as the Region of Interest.
 
-* Fused the mask to the sequence of bits from the previous step to have only the pixels from the lanes.
-
+  2. Fused the mask to the sequence of bits from the previous step to have only the pixels from the lanes.
 
 
 3. Hough's transformation
 
- The masked region now is transformed using the Hough's algorithm to generate lines out of the composition of points from the previous step. These lines are what gives the power to the pipeline because is what can be used as the "recognized lines" from each lane.
-
+The masked region now is transformed using the Hough's algorithm to generate lines out of the composition of points from the previous step. These lines are what gives the power to the pipeline because is what can be used as the "recognized lines" from each lane.
 
 
 4. Obtaining the mean lines
 
-* Squeezed any undesired dimensions that could have been leaked up to this point. They won't do any benefit to the code nor the functionality of the program.
+  1. Squeezed any undesired dimensions that could have been leaked up to this point. They won't do any benefit to the code nor the functionality of the program.
 
 The Hough lines obtained are lists full of 2 points in 2-D; so, 4 points per line; so,
 
-* What comes after is just obtaining the mean line derivate from the larger Hough lines, also averaged. It could have been the mean from all the lines, but with smaller lines, the mean line was barely affected. The end calculation generates a "mean set of points x1, y1, x2, y2" for both left and right lanes that are drawn using the draw line function, given by Udacity.
+  2. What comes after is just obtaining the mean line derivate from the larger Hough lines, also averaged. It could have been the mean from all the lines, but with smaller lines, the mean line was barely affected. The end calculation generates a "mean set of points x1, y1, x2, y2" for both left and right lanes that are drawn using the draw line function, given by Udacity.
 
-* Fused the lines and the input frame, start assembling the video and recall the next input frame.
+  3. Fused the lines and the input frame, start assembling the video and recall the next input frame.
 
 ###2. Content of the program described
 My program is split in 5 major areas (not including the import section) to make it easier to identify where modifications have to be done: Variables, Mask Points, My Functions, Project Functions, and Execution.
