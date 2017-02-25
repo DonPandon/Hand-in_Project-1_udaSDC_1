@@ -84,7 +84,7 @@ In This section, I include all the variables associated to literals of my progra
 
 In this section, you may find the different masks tweaked for each different input video. Almost all of them used a trapezoidal polygon to do the work. However, the challenge video required an more sophisticated shape to eliminate as much noise as possible. The shape, if drawn by hand, would look like this:
 
-                                          ![alt text][image2]
+![center][alt text][image2]
 
 
 * My Functions
