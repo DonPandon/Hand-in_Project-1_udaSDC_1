@@ -66,7 +66,7 @@ The steps I followed were (after opening and initializing the video for editing)
 
 1) Squeezed any undesired dimensions that could have been leaked up to this point. They won't do any benefit to the code nor the functionality of the program.
 
-The Hough lines obtained are lists full of 2 points in 2-D; so, 4 points per line.
+The Hough lines obtained are lists full of 2 points in 2-D; so, 4 points per line; so,
 
 2) What comes after is just obtaining the mean line derivate from the larger Hough lines, also averaged. It could have been the mean from all the lines, but with smaller lines, the mean line was barely affected. The end calculation generates a "mean set of points x1, y1, x2, y2" for both left and right lanes that are drawn using the draw line function, given by Udacity.
 
@@ -76,34 +76,44 @@ The Hough lines obtained are lists full of 2 points in 2-D; so, 4 points per lin
 My program is split in 5 major areas (not including the import section) to make it easier to identify where modifications have to be done: Variables, Mask Points, My Functions, Project Functions, and Execution.
 
 * Variables
+
 In This section, I include all the variables associated to literals of my program. To make modifications on values, it's easier to track down this section than fishing them from the code.
 
+
 * Mask points
+
 In this section, you may find the different masks tweaked for each different input video. Almost all of them used a trapezoidal polygon to do the work. However, the challenge video required an more sophisticated shape to eliminate as much noise as possible. The shape, if drawn by hand, would look like this:
 
-![alt text][image2]
+                                          ![alt text][image2]
+
 
 * My Functions
+
 In this section, you may find the functions I generated for my code to work. The code could be more modular, but that could be listed as a future improvement for now.
 
+
 * Project Functions
+
 In this section, you may find the functions given by Udacity as part of the template project. I put them separately to avoid confusion (of myself) and to have clear which functions needed adjustment, which didn't. Hough痴 did get a transformation because both of its outputs were used as part of the smoothing process.
 
+
 * Execution
+
 In this section, you may find the code that is actually doing something. It loads the video into the stream, edits it, and saves it back as a new file.
+
 
 ###2. Identify potential shortcomings with your current pipeline
 
-One potential shortcoming would be which version of Python you are using. Some functions may work slightly different than others, or the result for calculations (specially floats) might give a somewhat different output. The very first line of code was incorporated to compensate a problem I found while troubleshooting my code: my division were done as integers and I needed float results, so a compatibility import had to be done for division.
+* One potential shortcoming would be which version of Python you are using. Some functions may work slightly different than others, or the result for calculations (specially floats) might give a somewhat different output. The very first line of code was incorporated to compensate a problem I found while troubleshooting my code: my division were done as integers and I needed float results, so a compatibility import had to be done for division.
 
-Another shortcoming is my layout. I do not tend to follow industrial or common layout procedures. So, experienced programmers, I知 sorry.
+* Another shortcoming is my layout. I do not tend to follow industrial or common layout procedures. So, experienced programmers, I知 sorry.
 
-When storing the output points to generate the lines and with videos with shadows, I was getting mathematical errors in my generated points. I couldn't find a more elegant way to solve this problem but to put a try - except and skip the points generating this issue and just continue with the next one. This is what makes the lines disappear if there's not enough "line to track" on the input frame.
+* When storing the output points to generate the lines and with videos with shadows, I was getting mathematical errors in my generated points. I couldn't find a more elegant way to solve this problem but to put a try - except and skip the points generating this issue and just continue with the next one. This is what makes the lines disappear if there's not enough "line to track" on the input frame.
 
-I am doing a lot of designations and small calculations all over the place. For now, this is "good enough" but when more sophisticated code comes, it may cause a lot of drag.
+* I am doing a lot of designations and small calculations all over the place. For now, this is "good enough" but when more sophisticated code comes, it may cause a lot of drag.
 
 ###3. Suggest possible improvements to your pipeline
 
-A possible improvement would be to improve my algorithm to make smooth lines. For now, I am just writing a new line out of mean values from the input lines; by watching what other people has done, it is obvious there are way better ways to do this. I see a lot of repetitive actions in my code, but I am not experienced enough to reduce it more.
+* A possible improvement would be to improve my algorithm to make smooth lines. For now, I am just writing a new line out of mean values from the input lines; by watching what other people has done, it is obvious there are way better ways to do this. I see a lot of repetitive actions in my code, but I am not experienced enough to reduce it more.
 
-Another potential improvement could be to continue identifying better literals to implement to boost the efficiency of my output. Now, by hand, this will take me forever. I値l guess this is where machine learning might come handy and identify the "best of all" values to use for the current conditions applied.
+* Another potential improvement could be to continue identifying better literals to implement to boost the efficiency of my output. Now, by hand, this will take me forever. I値l guess this is where machine learning might come handy and identify the "best of all" values to use for the current conditions applied.
