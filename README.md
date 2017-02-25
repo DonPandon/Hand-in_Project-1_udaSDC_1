@@ -119,4 +119,12 @@ My program is split in 5 major areas (not including the import section) to make 
 
 * A possible improvement would be to improve my algorithm to make smooth lines. For now, I am just writing a new line out of mean values from the input lines; by watching what other people has done, it is obvious there are way better ways to do this. I see a lot of repetitive actions in my code, but I am not experienced enough to reduce it more.
 
+* Maybe, instead of adjusting both X and Y values of the output mean lines, I should adjust only the Ys. Xs tend to stay at the same point.
+
 * Another potential improvement could be to continue identifying better literals to implement to boost the efficiency of my output. Now, by hand, this will take me forever. I’ll guess this is where machine learning might come handy and identify the "best of all" values to use for the current conditions applied.
+
+###4. Conclusion
+
+I had a lot of learning and joy (at the end) after working on this project. It still has a lot of work to be done, but for now I feel I made a big improvement compared to what I had in previous weeks. I hope to dedicate more time to the futurte project so I can finish before the hard dead line and be able to continue to term 2. This is getting exiting.
+
+Have an excellent day! - Daniel
