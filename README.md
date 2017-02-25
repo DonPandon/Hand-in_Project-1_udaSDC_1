@@ -86,7 +86,7 @@ In this section, you may find the different masks tweaked for each different inp
 
 <p align="center">
 
-![alt text][image2]
+<img src="/challenge_Mask.jpg">
 
 </p>
 
