@@ -42,18 +42,22 @@ This new version uses moviePy to properly open, edit, and save the video for the
 The steps I followed were (after opening and initializing the video for editing):
 
 * The Trifecta
+
 1) I Converted each frame to a grayscale picture, then
 2) Smooth the frame with Gaussian Blur to find the bit change rate from the frame, and then
 3) Applied Canny Edge to take that change and covert it into individual pixels for processing.
 
 * Reducing the Region of Interest to what we want to work with (The ROI)
+
 1) Created a blank frame (the size of the input frame) and defined a small area to be the only area visible by using a Polygon. In most videos, a trapezoid did the work; but more sophisticated shapes can be used to exactly define what will be "visible" as the Region of Interest.
 2) Fused the mask to the sequence of bits from the previous step to have only the pixels from the lanes.
 
 * Hough's transformation
+
  The masked region now is transformed using the Hough's algorithm to generate lines out of the composition of points from the previous step. These lines are what gives the power to the pipeline because is what can be used as the "recognized lines" from each lane.
 
 * Obtaining the mean lines
+
 1) Squeeze any undesired dimensions that could have been leaked up to this point. They won't do any benefit to the code nor the functionality of the program.
 2) The Hough lines obtained are lists full of 2 points in 2-D; so, 4 points per line. What comes after is just obtaining the mean line derivate from the larger Hough lines, also averaged. It could have been the mean from all the lines, but with smaller lines, the mean line was barely affected. The end calculation generates a "mean set of points x1, y1, x2, y2" for both left and right lanes that are drawn using the draw line function, given by Udacity.
 3) Fuse the lines and the input frame, start assembling the video and recall the next input frame.
