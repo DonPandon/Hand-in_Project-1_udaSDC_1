@@ -41,16 +41,16 @@ This new version uses moviePy to properly open, edit, and save the video for the
 
 The steps I followed were (after opening and initializing the video for editing):
 
-* The Trifecta
+1. The Trifecta
 
-1) I Converted each frame to a grayscale picture, then
+* I Converted each frame to a grayscale picture, then
 
-2) Smooth the frame with Gaussian Blur to find the bit change rate from the frame, and then
+* Smooth the frame with Gaussian Blur to find the bit change rate from the frame, and then
 
-3) Applied Canny Edge to take that change and covert it into individual pixels for processing.
+* Applied Canny Edge to take that change and covert it into individual pixels for processing.
 
 
-* Reducing the Region of Interest to what we want to work with (The ROI)
+2. Reducing the Region of Interest to what we want to work with (The ROI)
 
 1) Created a blank frame (the size of the input frame) and defined a small area to be the only area visible by using a Polygon. In most videos, a trapezoid did the work; but more sophisticated shapes can be used to exactly define what will be "visible" as the Region of Interest.
 
