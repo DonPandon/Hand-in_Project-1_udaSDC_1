@@ -66,7 +66,7 @@ The steps I followed were (after opening and initializing the video for editing)
 
   1. Squeezed any undesired dimensions that could have been leaked up to this point. They won't do any benefit to the code nor the functionality of the program.
 
-  The Hough lines obtained are lists full of 2 points in 2-D; so, 4 points per line; so,
+    The Hough lines obtained are lists full of 2 points in 2-D; so, 4 points per line; so,
 
   2. What comes after is just obtaining the mean line derivate from the larger Hough lines, also averaged. It could have been the mean from all the lines, but with smaller lines, the mean line was barely affected. The end calculation generates a "mean set of points x1, y1, x2, y2" for both left and right lanes that are drawn using the draw line function, given by Udacity.
 
@@ -77,12 +77,12 @@ My program is split in 5 major areas (not including the import section) to make 
 
 * Variables
 
-In This section, I include all the variables associated to literals of my program. To make modifications on values, it's easier to track down this section than fishing them from the code.
+  In This section, I include all the variables associated to literals of my program. To make modifications on values, it's easier to track down this section than fishing them from the code.
 
 
 * Mask points
 
-In this section, you may find the different masks tweaked for each different input video. Almost all of them used a trapezoidal polygon to do the work. However, the challenge video required an more sophisticated shape to eliminate as much noise as possible. The shape, if drawn by hand, would look like this:
+  In this section, you may find the different masks tweaked for each different input video. Almost all of them used a trapezoidal polygon to do the work. However, the challenge video required an more sophisticated shape to eliminate as much noise as possible. The shape, if drawn by hand, would look like this:
 
 <p align="center">
 
@@ -92,17 +92,17 @@ In this section, you may find the different masks tweaked for each different inp
 
 * My Functions
 
-In this section, you may find the functions I generated for my code to work. The code could be more modular, but that could be listed as a future improvement for now.
+  In this section, you may find the functions I generated for my code to work. The code could be more modular, but that could be listed as a future improvement for now.
 
 
 * Project Functions
 
-In this section, you may find the functions given by Udacity as part of the template project. I put them separately to avoid confusion (of myself) and to have clear which functions needed adjustment, which didn't. Hough’s did get a transformation because both of its outputs were used as part of the smoothing process.
+  In this section, you may find the functions given by Udacity as part of the template project. I put them separately to avoid confusion (of myself) and to have clear which functions needed adjustment, which didn't. Hough’s did get a transformation because both of its outputs were used as part of the smoothing process.
 
 
 * Execution
 
-In this section, you may find the code that is actually doing something. It loads the video into the stream, edits it, and saves it back as a new file.
+  In this section, you may find the code that is actually doing something. It loads the video into the stream, edits it, and saves it back as a new file.
 
 
 ###2. Identify potential shortcomings with your current pipeline
