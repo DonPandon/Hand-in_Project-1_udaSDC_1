@@ -10,11 +10,6 @@
 
 The goals / steps of this project are the following:
 * Make a pipeline that finds lane lines on the road
-
-[//]: # (Image References)
-
-[image1]: ./examples/grayscale.jpg "Grayscale"
-[image2]: ./challenge_Mask.jpg "Challenge Mask"
 ---
 
 ### Reflection
@@ -33,44 +28,35 @@ In the end, I was victorious. Unfortunately, the code is not perfect. There's st
 
  I present to you my patchwork; I mean, pipeline.
 
-###1. Course of action: What to expect in this project.
+###1. Course of action: How the program was tackled.
 
-cv2 was not doing the job of saving the file correctly into a video and, checking online, it was found that cv2 has a bug that makes it almost impossible for it to save videos. The first time I handed in the video, I stored up to 300 images in a single folder and used Movie Maker to put it together as a video. Not elegant, but did the job. The problem was that it was missing the capability of creating smooth lines; instead, it was all the Hough’s' jumping around in a complete chaos. Not practical.
+After the Hough's transformation is applied, a collection of lines is stored and generates a very interesting effect that looks like this (exagered):
 
-This new version uses moviePy to properly open, edit, and save the video for the pipeline to be complete.
+<p align="center">
 
-The steps I followed were (after opening and initializing the video for editing):
+<img src="/HoughLines_unprocessed.jpg">
 
-1. The Trifecta
+</p>
 
-  1. I Converted each frame to a grayscale picture, then
+That works "fine" to understand the concept, but it won't do any good to the self driving algorythm. Reason why a more smooth line is required. Such line can be obtained with multiple statistics operations such as interpolation. My limitations in Python, however, put me in a bad place to know how to perform complex calculations with this programming language, so I decided to use a more "simple" process: a mean line.
 
-  2. Smooth the frame with Gaussian Blur to find the bit change rate from the frame, and then
+What I call a mean line is a line that is generated out of the analysis of all the lines created by Hough's. Similar to the interpolation of points, this mean line will check the  mean values of all the points forming the lines ( Exes (X) and Wyes (Y) ) to get the final mean lines X and Y values. Positive and Negative slopes can be use to catheorize which lines represent left lane (negative) and which ones the right lane (positives). All the calculations used will work around the standard line equation:
 
-  3. Applied Canny Edge to take that change and covert it into individual pixels for processing.
+<p align="center">
+**y = m x + b**
+</p>
+
+All those lines have slopes and magnitudes that can be used to categorize them. The magnitudes will be used to identify which lines are more signitifcant (i.e. will bring the more significant change to the result), and the slopes will be used to sort the points in different groups. Definining a threshold for the slope is important to avoid situations in which we get divisions by zero, for example.
+
+This process is not optimal due to the high dependecy on the output of Houghs, meaning that errors and noise in the pre-processed image will generate a lot of "jumping" of the new lines. Howvwer, is good enough for the scope of this project. The results can be shown in the video as a collection of frames that assemble the mean X and Y points of the mean line and draws them over the lanes:
+
+<p align="center">
+
+<img src="/meanLines.jpg">
+
+</p>
 
 
-2. Reducing the Region of Interest to what we want to work with (The ROI)
-
-  1. Created a blank frame (the size of the input frame) and defined a small area to be the only area visible by using a Polygon. In most videos, a trapezoid did the work; but more sophisticated shapes can be used to exactly define what will be "visible" as the Region of Interest.
-
-  2. Fused the mask to the sequence of bits from the previous step to have only the pixels from the lanes.
-
-
-3. Hough's transformation
-
-  The masked region now is transformed using the Hough's algorithm to generate lines out of the composition of points from the previous step. These lines are what gives the power to the pipeline because is what can be used as the "recognized lines" from each lane.
-
-
-4. Obtaining the mean lines
-
-  1. Squeezed any undesired dimensions that could have been leaked up to this point. They won't do any benefit to the code nor the functionality of the program.
-
-    The Hough lines obtained are lists full of 2 points in 2-D; so, 4 points per line; so,
-
-  2. What comes after is just obtaining the mean line derivate from the larger Hough lines, also averaged. It could have been the mean from all the lines, but with smaller lines, the mean line was barely affected. The end calculation generates a "mean set of points x1, y1, x2, y2" for both left and right lanes that are drawn using the draw line function, given by Udacity.
-
-  3. Fused the lines and the input frame, start assembling the video and recall the next input frame.
 
 ###2. Content of the program described
 My program is split in 5 major areas (not including the import section) to make it easier to identify where modifications have to be done: Variables, Mask Points, My Functions, Project Functions, and Execution.
