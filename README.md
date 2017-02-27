@@ -52,7 +52,7 @@ This process is not optimal due to the high dependecy on the output of Houghs, m
 
 <p align="center">
 
-<img src="/meanLines.jpg">
+<img src="/meanLines.JPG">
 
 </p>
 
